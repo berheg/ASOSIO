@@ -1,0 +1,27 @@
+{
+  "name": "sort-genarated-reactions-app",
+  "version": "1.0.0",
+  "description": "The REST API has one pars, random-API-response",
+  "main": "src/server/app.js",
+  "scripts": {
+    "build":"npm run build --prefix src/client",
+    "client-install": "cd client && npm install",
+    "server": "nodemon .src/server/app.js",
+    "client": "npm start --prefix src/client",
+    "start": "nodemon",
+    "dev": "concurrently  \"npm run server \" \"npm run client \" "
+  },
+  "author": "Girmay",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.14.6"
+  },
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.3",
+    "react-router-dom": "^5.1.2"
+  } 
+}

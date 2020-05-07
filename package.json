@@ -4,7 +4,6 @@
   "description": "The REST API has one pars, random-API-response",
   "main": "src/server/app.js",
   "scripts": {
-    "build": "npm run build --prefix src/client",
     "client-install": "cd client && npm install",
     "server": "nodemon .src/server/app.js",
     "client": "npm start --prefix src/client",

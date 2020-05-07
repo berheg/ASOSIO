@@ -1,0 +1,26 @@
+div{
+    width: 10%;
+}
+div>.reaction-list{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+div>.name-list {
+    display: none;
+    margin-left: 10px;
+    color: #000;
+  }
+div:hover>.name-list{
+    
+    display: flex;
+    flex-direction: column;
+}
+li {
+    padding: 10px 15px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    color: #999;
+  }

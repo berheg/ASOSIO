@@ -1,0 +1,10 @@
+.main-header{
+    background: rgb(17, 140, 211);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+.router-link{
+    color: #fff;
+    text-decoration: none;
+}

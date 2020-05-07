@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - 10.6.0
+cache: npm
+install:
+  - npm install
+script:
+  npm test
+  npm run build
+deploy:
+  provider: pages
+  edge: true
+  repo: berheg/ASOSIO/Sort-Generated-Reactions-app
+  github-token: $GITHUB_TOKEN
+  local_dir: public
+  target_branch: master
+  skip-cleanup: true
+  keep-history: true
+  on:
+    branch: master

@@ -1,15 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const HttpError = require('./api/lib/utils/http-error');
 const proxy = require('http-proxy-middleware');    
 
 const randomAPIresponseRouter = require('./api/routes/randomAPIresponse.router');
 
 const app = express();
 
-app.use(proxy('/api/**', { target: 'http://localhost:5000' }));
-app.use(proxy('/otherApi/**', { target: 'http://localhost:5000' }));
+/*app.use(proxy('/randomAPIresponse/**', { target: 'http://localhost:5000' }));
+app.use(proxy('/**', { target: 'http://localhost:5000' }));*/
 app.use(express.static(__dirname));
 const ENV = process.env.NODE_ENV;
 

@@ -9,8 +9,8 @@ const randomAPIresponseRouter = require('./api/routes/randomAPIresponse.router')
 const normalizePort = port => parseInt(port, 10)
 const app = express();
 
-app.use(createProxyMiddleware('/randomAPIresponse/**', { target: 'http://localhost:5000' }));
-app.use(createProxyMiddleware('/**', { target: 'http://localhost:5000' }));
+/*app.use(createProxyMiddleware('/randomAPIresponse/**', { target: 'http://localhost:5000' }));
+app.use(createProxyMiddleware('/**', { target: 'http://localhost:5000' }));*/
 //app.use(express.static(__dirname));
 
 if (ENV === 'production') {

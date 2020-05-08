@@ -18,9 +18,9 @@ class App extends Component {
   }                                                
   //excuted when the component is mounted
 	componentDidMount() {
-    setInterval(() => {
+    //setInterval(() => {
       setTimeout(() => {
-        fetch('https://localhost:5000/randomAPIresponse',{method: 'GET',
+        fetch('/randomAPIresponse',{method: 'GET',
         headers: {
             'content-type': 'application/json'
         }
@@ -90,7 +90,7 @@ class App extends Component {
         this.setState({reactionsGeneratedContent:dataToList,reactionsGeneratedBy: names} );
         });    
       }, 500);
-    }, 10000);
+    //}, 10000);
         
   } 
   render() {

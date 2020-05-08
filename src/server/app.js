@@ -3,22 +3,25 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { createProxyMiddleware } = require('http-proxy-middleware');;    
 const morgan = require('morgan');
+const ENV = process.env.NODE_ENV;
 
 const randomAPIresponseRouter = require('./api/routes/randomAPIresponse.router');
-
+const normalizePort = port => parseInt(port, 10)
 const app = express();
 
 app.use(createProxyMiddleware('/randomAPIresponse/**', { target: 'http://localhost:5000' }));
 app.use(createProxyMiddleware('/**', { target: 'http://localhost:5000' }));
-app.use(morgan("combined"));
-app.use(express.static(__dirname));
-const ENV = process.env.NODE_ENV;
+//app.use(express.static(__dirname));
 
 if (ENV === 'production') {
+  app.disable('x-powered-by');
+  app.use(compression());
   app.use(express.static(path.join(__dirname, '../client/build')));
   app.use((req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
   });
+}else{
+  app.use(morgan('dev'));
 }
 //middleware
 app.use('/randomAPIresponse',randomAPIresponseRouter);
@@ -48,7 +51,7 @@ app.use((error, req, res, next) => {
    }
  });
 });
-const port= process.env.PORT || 5000;
+const port= normalizePort(process.env.PORT || 5000);
 app.listen(port, () =>{
   console.log(`Server listening on port ${port}`);
 });

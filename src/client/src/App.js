@@ -20,7 +20,7 @@ class App extends Component {
 	componentDidMount() {
     setInterval(() => {
       setTimeout(() => {
-        fetch('/randomAPIresponse',{method: 'GET',
+        fetch('https://localhost:5000/randomAPIresponse',{method: 'GET',
         headers: {
             'content-type': 'application/json'
         }

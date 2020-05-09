@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
     
     try {
       res.json(JSON.stringify(randomAPIresponseController()));
-    } catch (error) {
+    } catch (next) {
       
     }
        

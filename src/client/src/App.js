@@ -18,9 +18,9 @@ class App extends Component {
   }                                                
   //excuted when the component is mounted
 	componentDidMount() {
-    //setInterval(() => {
+    setInterval(() => {
       setTimeout(() => {
-        fetch('/randomAPIresponse',{method: 'GET',
+        /*fetch('/randomAPIresponse',{method: 'GET',
         headers: {
             'content-type': 'application/json'
         }
@@ -29,8 +29,17 @@ class App extends Component {
       .then(apiResponse => {
         console.log(apiResponse);
         this.setState({isLoading:false});
-        const reactions=[];
-        const generated = JSON.parse(apiResponse);
+        //const generated = JSON.parse(apiResponse);
+        });*/  
+        this.setState({isLoading:false});
+        this.getSortedReactions();  
+      }, 500);
+    }, 10000);
+        
+  }
+  getSortedReactions(){
+    const reactions=[];
+        const generated = this.randomAPIresponse();
         console.log(generated);
         const reactionsGenerated = [];   
         const typeSorted=[];                                                            
@@ -88,18 +97,34 @@ class App extends Component {
           indexOfEachEnteries++;  
         }
         this.setState({reactionsGeneratedContent:dataToList,reactionsGeneratedBy: names} );
-        });    
-      }, 500);
-    //}, 10000);
-        
   } 
+  randomAPIresponse() {
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]];}
+      return array
+    }
+    const LIMIT = 20
+    const names = ["Anne","Bent","Christian","Ditlev","Esther","Frank","Gurli","Hans","Inger","Jens","Klaus","Lone","Marie","Nana","Ole"]
+    const surnames = ["Meta","Mariager","Malteser","Manus","Manga","Mangler","Misty","Mango","Melorm","Meteor","Mus","Moloko","Makker","Mystic"]
+    const reactions = [["thumbs-down","👎"],["thumbs-up","👍"],["smile","😀"],["feats-of-strength","💪"],["collision","💥"],["star","🌟"],["tornado","🌪"],["alarm-clock","⏰"]]
+    const generated = []
+    for (let i = 0; i<=LIMIT; i++) {
+      const [r0,r1,r3] = [
+        Math.floor(Math.random() * names.length) + 0,
+        Math.floor(Math.random() * surnames.length) + 0,
+        Math.floor(Math.random() * reactions.length) + 0
+      ]
+      const [type,content] = shuffle(reactions)[r3]
+      generated.push({type,content,name:[shuffle(names)[r0], shuffle(surnames)[r1]].join(" ")})
+    }  
+    return generated
+  }
   render() {
     return (
       <Router>
       <div className='App'>
         <div className='container'>
-          <Header />
-          
+          <Header />          
           <Route
             exact
             path='/'
